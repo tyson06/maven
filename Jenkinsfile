@@ -24,7 +24,7 @@ pipeline {
     }
     stage('Push Artifact to S3') {
       steps {
-        sh 'aws s3 cp webapp/target/webapp.war s3://bulbulbucket'
+        sh 'aws s3 cp webapp/target/webapp.war s3://jazzbckt'
       }
     }
     
