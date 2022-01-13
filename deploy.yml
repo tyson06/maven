@@ -1,0 +1,22 @@
+- hosts: all
+  become: true
+  tasks:
+   - name: Log into DockerHub
+     docker_login:
+      username: phanirudra9
+      password: 9eb876d4@A
+      email: lprudra9@gmail.com
+      
+   - name: Pull image from docker hub
+     command: docker pull phanirudra9/phani9-devops:"{{buildNumber}}"
+
+   - name: Stop current running container
+     command: docker stop phani-c1
+     ignore_errors: yes
+
+   - name: Remove stopped container
+     command: docker rm phani-c1
+     ignore_errors: yes
+
+   - name: Run a container from the pulled image
+     command: docker run -d --name phani-c1 -p 80:8080 phanirudra9/phani9-devops:"{{buildNumber}}"
